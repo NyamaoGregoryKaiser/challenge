@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 st.set_page_config(layout="wide")
-st.title('Expected vs Collected (Loans maturing 1–21 Jan 2026)')
+st.title('January arrear collection challenge')
 
 @st.cache_data
 def load_data():
@@ -82,18 +82,18 @@ expected_by_branch["Collected by 21"] = (
 
 # -------------------------------------------------
 # ✅ NEW LOGIC
-# Collected after 21 = Total Repayment Derived − Collected by 21
+# Arrears collected = Total Repayment Derived − Collected by 21
 # -------------------------------------------------
-expected_by_branch["Collected after 21"] = (
+expected_by_branch["Arrears collected"] = (
     expected_by_branch["Total Repayment Derived"] -
     expected_by_branch["Collected by 21"]
 ).clip(lower=0)
 
 # -------------------------------------------------
-# ✅ Commission = 3% of Collected after 21
+# ✅ Commission = 3% of Arrears collected
 # -------------------------------------------------
 expected_by_branch["Commission (3%)"] = (
-    expected_by_branch["Collected after 21"] * 0.03
+    expected_by_branch["Arrears collected"] * 0.03
 )
 
 # -------------------------------------------------
@@ -103,7 +103,7 @@ for c in [
     "Expected (maturing 1–21 Jan)",
     "Total Repayment Derived",
     "Collected by 21",
-    "Collected after 21",
+    "Arrears collected",
     "Commission (3%)",
 ]:
     expected_by_branch[c] = expected_by_branch[c].map(lambda x: f"Ksh {x:,.0f}")
