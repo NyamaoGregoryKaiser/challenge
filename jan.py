@@ -64,25 +64,25 @@ expected_by_branch = (
 )
 
 # -------------------------------------------------
-# Static collected by 20
+# Static collected by 21
 # -------------------------------------------------
 collected_by_21_map = {
-    "Kitengala Branch": 128_600,
-    "Kawangware Branch": 1_148_531,
-    "Adams Branch": 2_401_437,
-    "Pipeline Branch": 2_525_739,
-    "Utawala Branch": 1_705_601,
-    "Kasarani Branch": 1_681_908,
-    "Kiambu Branch": 1_279_769,
+    "Kitengala Branch": 384_557,
+    "Kawangware Branch": 1_226_558,
+    "Adams Branch": 2_526_613,
+    "Pipeline Branch": 2_357_533,
+    "Utawala Branch": 2_135_627,
+    "Kasarani Branch": 2_016_894,
+    "Kiambu Branch": 1_302_698,
 }
 
 expected_by_branch["Collected by 21"] = (
-    expected_by_branch["Branch Name"].astype(str).str.strip().map(collected_by_20_map).fillna(0)
+    expected_by_branch["Branch Name"].astype(str).str.strip().map(collected_by_21_map).fillna(0)
 )
 
 # -------------------------------------------------
 # ✅ NEW LOGIC
-# Arrears collected = Total Repayment Derived − Collected by 20
+# Arrears collected = Total Repayment Derived − Collected by 21
 # -------------------------------------------------
 expected_by_branch["Arrears collected"] = (
     expected_by_branch["Total Repayment Derived"] -
