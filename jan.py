@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 st.set_page_config(layout="wide")
-st.title('January arrear collection challenge')
+st.title('March arrear collection challenge')
 
 @st.cache_data
 def load_data():
@@ -43,8 +43,8 @@ df = load_data()
 # Filter maturity window
 # -------------------------------------------------
 df = df[
-    (df["Expected Matured On Date"] >= "2026-01-01") &
-    (df["Expected Matured On Date"] <= "2026-01-21")
+    (df["Expected Matured On Date"] >= "2026-03-01") &
+    (df["Expected Matured On Date"] <= "2026-03-21")
 ].copy()
 
 # -------------------------------------------------
@@ -60,7 +60,7 @@ expected_by_branch = (
         ["Total Expected Repayment Derived", "Total Repayment Derived"]
     ]
     .sum()
-    .rename(columns={"Total Expected Repayment Derived": "Expected (maturing 1–21 Jan)"})
+    .rename(columns={"Total Expected Repayment Derived": "Expected (maturing 1–21 March)"})
 )
 
 # -------------------------------------------------
@@ -100,7 +100,7 @@ expected_by_branch["Commission (3%)"] = (
 # Format currency
 # -------------------------------------------------
 for c in [
-    "Expected (maturing 1–21 Jan)",
+    "Expected (maturing 1–21 March)",
     "Total Repayment Derived",
     "Collected by 21",
     "Arrears collected",
