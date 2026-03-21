@@ -60,7 +60,7 @@ expected_by_branch = (
         ["Total Expected Repayment Derived", "Total Repayment Derived"]
     ]
     .sum()
-    .rename(columns={"Total Expected Repayment Derived": "Expected (maturing 1–21 March)"})
+    .rename(columns={"Total Expected Repayment Derived": "Expected (maturing 1–20 March)"})
 )
 
 # -------------------------------------------------
@@ -86,7 +86,7 @@ expected_by_branch["Collected by 21"] = (
 # -------------------------------------------------
 expected_by_branch["Arrears collected"] = (
     expected_by_branch["Total Repayment Derived"] -
-    expected_by_branch["Collected by 21"]
+    expected_by_branch["Collected by 20"]
 ).clip(lower=0)
 
 # -------------------------------------------------
@@ -100,9 +100,9 @@ expected_by_branch["Commission (3%)"] = (
 # Format currency
 # -------------------------------------------------
 for c in [
-    "Expected (maturing 1–21 March)",
+    "Expected (maturing 1–20 March)",
     "Total Repayment Derived",
-    "Collected by 21",
+    "Collected by 20",
     "Arrears collected",
     "Commission (3%)",
 ]:
