@@ -44,7 +44,7 @@ df = load_data()
 # -------------------------------------------------
 df = df[
     (df["Expected Matured On Date"] >= "2026-03-01") &
-    (df["Expected Matured On Date"] <= "2026-03-21")
+    (df["Expected Matured On Date"] <= "2026-03-20")
 ].copy()
 
 # -------------------------------------------------
